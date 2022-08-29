@@ -1,0 +1,53 @@
+/* .sideBarWrapper{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+    height: 100%;
+    border-right: 1px solid black;
+} */
+
+.navBarContainer,
+.collapsedNavbar {
+    box-shadow: 3px 3px 3px 3px rgb(0 0 0 / 10%);
+    height: 100%;
+    /* padding: 20px 36px; */
+    background: rgba(75,0,130);
+    color: white;
+    padding-top: 30px;
+    overflow: hidden;
+}
+
+.navBarContainer {
+    z-index: 1;
+}
+
+.collapsedNavbar {
+    width: 80px;
+}
+
+.navBarItems {
+    display: grid;
+    gap: 24px;
+    padding: 20px;
+    padding-top: 0;
+}
+
+.coursesText,
+.dashboardWrapper {
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    gap: 16px;
+    cursor: pointer;
+}
+
+.coursesText img,
+.dashboardWrapper img {
+    width: 45px;
+    height: 45px;
+}
+
+.navBarItems h3 {
+    margin: 0;
+}
