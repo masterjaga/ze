@@ -47,6 +47,7 @@ export function SignUp() {
     }
 
     const onSignUp = async (e) => {
+        e.preventDefault();
         var data = [{
             email: email,
             password: password,
@@ -71,15 +72,18 @@ export function SignUp() {
         }
 
         
-        e.preventDefault();
+        
     };
 
     return (
         <div className="signup">
-            <div className="iconWrapper">
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ef/Stack_Overflow_icon.svg/512px-Stack_Overflow_icon.svg.png" alt="" />
-            </div>
             <form className="signupContent" onSubmit={(e) => onSignUp(e)}>
+                <div className="logo">
+                    <div className="logoText">
+                        <span>LEARN</span>
+                        INFINITY
+                    </div>
+                </div>
                 <div className="displayNameWrapper">
                     <label htmlFor="display">User Name</label>
                     <input id="display" type="text" onChange={(e) => onUserNameChange(e)} required/>
@@ -97,6 +101,15 @@ export function SignUp() {
                 <Button type="submit" variant="contained">Sign up</Button>
                 <div className="accountExists">Already have an account? <span onClick={() => navigate("/login")}>&nbsp;Login</span></div>
             </form>
+            <div className="signUpRightWrapper">
+                <div>
+                    <h2>Sign Up</h2>
+                    <div>We do not share your details with anyone</div>
+                </div>
+                <div className="portalDescription">"The ultimate guide to choosing the best online training platforms for Web Development"</div>
+                {/* <img src="./Assets/rightArrow.png"/> */}
+                {/* <img src="https://png.pngtree.com/element_pic/16/11/13/c4ab15194440b8f6c5419cf1f07a41c0.jpg"/> */}
+            </div>
       </div>
     );
 }

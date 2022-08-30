@@ -1,6 +1,6 @@
 import { Button } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { API } from "../../global";
 import { SideNavbar } from "../SideNavbar";
 import "./classes.css";
@@ -18,8 +18,16 @@ export function Classes(){
     const [classData, setClassData] = useState({});
     const [displayJoiningLink, setDiaplayJoiningLink] = useState(false);
 
+
+    let userDetails = localStorage.getItem("user");
+    userDetails = userDetails && JSON.parse(userDetails);
+    const token = userDetails && userDetails.token;
+
+
     async function getAllClasses(){
-        const result = await fetch(`${API}/classes/getAllClasses`).then((data)=>data.json());
+        const result = await fetch(`${API}/classes/getAllClasses`,{
+            headers: {"x-auth-token" : token }
+        }).then((data)=>data.json());
         setAllClassesData(result);
     }
 
@@ -39,14 +47,14 @@ export function Classes(){
         setDiaplayJoiningLink(false);
     }
 
-    return(
+    return localStorage.getItem("user") ? (
         <div className="classesContainer">
             <div className = "classesContentWrapper">
                 {Object.keys(classData).length ? 
                     <ClassInfo classData = {classData} displayJoiningLink = {displayJoiningLink} setDiaplayJoiningLink = {setDiaplayJoiningLink}/> :
                     <div className="initlaClassContainer">
                         <h2 className="initlaClassHeader">{initialClassData.classTopic}</h2>
-                        <img src="https://th.bing.com/th/id/R.dc60f6f1f3e6799945240e7b4bee248b?rik=Ln%2f20RDVYMDb6g&riu=http%3a%2f%2fwww.freeiconspng.com%2fuploads%2fright-arrow-png-31.png&ehk=TCjsCOW5%2bkyH8hFxGp3ho2LO7t0jnsHVNN8Nnjt182A%3d&risl=&pid=ImgRaw&r=0"/>
+                        <img src="./Assets/rightArrow.png"/>
                     </div>
                 }     
             </div>
@@ -59,6 +67,9 @@ export function Classes(){
                 </div>
             </div>
         </div>
+    ) :
+    (
+        <Navigate to ="/login" />
     );
 }
 
@@ -75,7 +86,7 @@ export function ClassInfo({classData,displayJoiningLink,setDiaplayJoiningLink}){
         setDiaplayJoiningLink(true);
    }
    
-    return(
+    return (
         <div className = "classInfoWrapper">
             <div className="header">
                 <span className = "topic">{classData.classTopic}:</span>
@@ -84,35 +95,45 @@ export function ClassInfo({classData,displayJoiningLink,setDiaplayJoiningLink}){
                     <span className = "classFinished"> {classData.date && `Class Completed on ${courseDate.toLocaleDateString()}` }</span>
                 }
             </div>
-            <div className = "dateAndDayWrapper">
-                <div className = "day">{classData.day}:</div>
-                <div className="dateWrapper">
-                    <span className = "date">{classData.date}</span>
-                    <span className = "time">{classData.time}</span>
-                </div>
-            </div>
-            {
-            displayJoiningLink ? 
-            <div className="joiningLinkWrapper">
-                <div className = "classLink">
-                    <a href={classData.classLink} target = "_blank">Click here to join class</a>
-                    <div>In case of any difficulty using above link use the following credentials to join class <br/> 
-                        <span>Meeting Id : {classData.meetingId}</span>
-                        <span>Passcode : {classData.passcode}</span>
+            <div className="classInfoContentWrapper">
+                <div>
+                    <div className = "dateAndDayWrapper">
+                        <div className = "day">{classData.day}:</div>
+                        <div className="dateWrapper">
+                            <span className = "date">{classData.date}</span>
+                            <span className = "time">{classData.time}</span>
+                        </div>
+                    </div>
+                    <div className = "keyAreas">
+                        <div className="keyAreasheading">{classData.KeyAreas && "Today's Topics are as follows : "}</div>
+                        <div>
+                            <ul>
+                                {classData.KeyAreas  && classData.KeyAreas.map((value)=>{
+                                    return <li>{value}</li>
+                                })}
+                            </ul>
+                        </div>
                     </div>
                 </div>
-            </div> : 
-            null
-            }
-            <div className = "keyAreas">
-                <div className="keyAreasheading">{classData.KeyAreas && "Today's Topics are as follows : "}</div>
-                <div>
-                    <ul>
-                        {classData.KeyAreas  && classData.KeyAreas.map((value)=>{
-                            return <li>{value}</li>
-                        })}
-                    </ul>
-                </div>
+                {displayJoiningLink ? 
+                    <div className="joiningLinkWrapper">
+                        <div className = "classLink">
+                            <a href={classData.classLink} target = "_blank">Click here to join class</a>
+                            <div className="meetingInfo">
+                                <div>In case of any difficulty using above link use the following credentials to join class</div> 
+                                <div className="meetingId">
+                                    <span>Meeting Id : </span>
+                                    {classData.meetingId}
+                                </div>
+                                <div className="passcode">
+                                    <span>Passcode : </span>
+                                    {classData.passcode}
+                                </div>
+                            </div>
+                        </div>
+                    </div> : 
+                    null
+                }
             </div>
         </div>
     );

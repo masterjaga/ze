@@ -49,11 +49,12 @@ export function Login() {
       <div className="login">
         
         <form className="loginContent" onSubmit={(e) => onLogin(e)}>
-        <div className="iconWrapper">
-            <h2>LearnInfinity</h2>
-            <h3>Welcome, Please Login to your Account</h3>
-            {/* <img src="https://cdn1.iconfinder.com/data/icons/arrows-150/100/sign-arrow-light-box-outside-right-512.png" alt="" /> */}
-        </div>
+            <div className="logo">
+                <div className="logoText">
+                    <span>LEARN</span>
+                    INFINITY
+                </div>
+            </div>
             {invalidErrorMessage && <div className="invalidErrorMessage">{invalidErrorMessage}</div>}
             <div className="emailWrapper">
                 <label htmlFor="email">Email</label>
@@ -66,6 +67,8 @@ export function Login() {
             <Button type="submit" variant="contained">Login</Button>
             <div className="noAccount">Don't have an account? <span onClick={() => navigate("/signup")}>&nbsp;SignUp</span></div>
         </form>
+        
+        <img src="https://th.bing.com/th/id/OIP.9-cTmVTz5jZl0wPdxBrA7gHaEo?pid=ImgDet&rs=1" alt="" />
       </div>
     );
 }

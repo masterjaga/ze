@@ -113,13 +113,14 @@
     position: absolute;
     left: 105px;
     width: -webkit-fill-available;
+    height: calc(100% - 85px);
     /* height: 100vh; */
 }
 
 .reactPlayer {
     width: 100% !important;
     height: 500px !important;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
 }
 
 .rightNavAllCourses {
@@ -132,10 +133,6 @@
 .rightNavAllCourses h3 {
     margin: 0;
     color: #fff;
-}
-
-.rightNavAllCourses::-webkit-scrollbar { 
-    width: 0 !important
 }
 
 .courseDescription {

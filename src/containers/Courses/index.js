@@ -3,7 +3,7 @@ import { API } from "../../global";
 import { Button } from "@mui/material";
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import "./courses.css"
 import { SideNavbar } from "../SideNavbar";
 import { TopNavBar } from "../TopNavBar";
@@ -14,8 +14,16 @@ export function Courses(){
     const navigate = useNavigate();
     const [courseData,setCourseData]=useState([]);
 
+
+    let userDetails = localStorage.getItem("user");
+    userDetails = userDetails && JSON.parse(userDetails);
+    const token = userDetails && userDetails.token;
+
+
     async function getAllCourses(){
-        const data = await fetch(`${API}/courses/getAllCourses`).then((data)=>data.json());
+        const data = await fetch(`${API}/courses/getAllCourses`,{
+            headers: {"x-auth-token" : token }
+        }).then((data)=>data.json());
         setCourseData(data);
     }
     
@@ -23,9 +31,7 @@ export function Courses(){
         getAllCourses();
     },[]);
 
-    console.log(courseData);
-    return (
-        
+    return localStorage.getItem("user") ? (
         <div className="allCoursesWraper" id="courses">
             {courseData.map((course, index) => {
                 return (
@@ -39,5 +45,8 @@ export function Courses(){
                 );
             })}
         </div>
+    ) :
+    (
+        <Navigate to ="/login" />
     );
 }

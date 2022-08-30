@@ -23,5 +23,9 @@
 
 .loginContainer {
     height: 100vh;
-    background-image: linear-gradient(#8360c3, #2ebf91);
+    /* background-image: linear-gradient(#8360c3, #2ebf91); */
+    background-image: linear-gradient(to right, #0f0c29, #302B63, #24243e);
+    display: grid;
+    align-items: center;
+    justify-content: center;
 }

@@ -34,7 +34,8 @@
 }
 
 .coursesText,
-.dashboardWrapper {
+.dashboardWrapper,
+.signOut {
     display: flex;
     align-items: center;
     font-size: 20px;
@@ -43,11 +44,24 @@
 }
 
 .coursesText img,
-.dashboardWrapper img {
+.dashboardWrapper img,
+.sideNavbar .signOut img {
     width: 45px;
     height: 45px;
 }
 
+.sideNavbar .signOut {
+    padding: 20px;
+    cursor: pointer;
+}
+
 .navBarItems h3 {
     margin: 0;
+}
+
+.sideNavbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 80vh;
 }

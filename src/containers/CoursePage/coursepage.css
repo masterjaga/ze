@@ -1,4 +1,4 @@
-.bodyContainer {
+/* .bodyContainer {
     display: grid;
     grid-template-columns: 15% 1fr;
     gap: 30px;
@@ -11,4 +11,23 @@
     background: darkslateblue;
     overflow: hidden;
     height: 100vh;
-  }
+  } */
+
+.disabledFinishButton {
+    color: darkgray !important;
+    cursor: not-allowed !important;
+    pointer-events: auto !important;
+}
+
+.finishButton {
+    background-color: blueviolet;
+}
+
+.courseCompletion {
+    background: coral;
+    padding: 12px;
+    color: white;
+    width: max-content;
+    font-size: 18px;
+    border-radius: 4px;
+}

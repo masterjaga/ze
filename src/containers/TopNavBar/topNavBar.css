@@ -1,7 +1,25 @@
 .logo {
-    font-size: 30px;
-    color: deeppink;
-    font-weight: bold;
+    font-size: 20px;
+    /* color: deeppink; */
+    font-weight: 400;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+}
+
+.logoText {
+    color: lightseagreen;
+    border: 1px solid darkviolet;
+    padding: 4px;
+    width: fit-content;
+}
+
+.logoText span {
+    background: blueviolet;
+    padding: 0 4px;
+    width: fit-content;
+    color: #fff;
+    margin-right: 8px;
 }
 
 .profileImage {
@@ -45,4 +63,5 @@
     background: rgba(75,0,130);
     padding: 20px 36px;
     color: white;
+    padding-left: 20px;
   }

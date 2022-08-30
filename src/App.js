@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import {Route, Routes, useLocation, Navigate} from "react-router-dom";
+import {Route, Routes, useLocation, Navigate, useNavigate} from "react-router-dom";
 import { Dashboard } from './containers/Dashboard';
 import { SideNavbar } from './containers/SideNavbar';
 import { Login } from './containers/Login';
@@ -13,17 +13,22 @@ import { TopNavBar } from './containers/TopNavBar';
 
 function App() {
   const location = useLocation();
+  const navigate = useNavigate();
   const isLoginPage = location.pathname === "/" || location.pathname === "/login" || location.pathname == "/signup";
-  // console.log(location);
+  const isCoursePage = location.pathname.includes("/courses/");
 
-  // var userDetails = localStorage.getItem("user");
-  // userDetails = userDetails && JSON.parse(userDetails);
-  // const userName = userDetails.userName;
+  const onNavClick = (navItem, type) => {
+    if(type === "signOut") {
+      localStorage.clear();
+    }
+    navigate(`${navItem}`);
+  }
+
   return (
     <div className={!isLoginPage && localStorage.getItem("user") ? "appContainer" : ""}>
       {!isLoginPage && localStorage.getItem("user") && <TopNavBar />}
       <div className={!isLoginPage && localStorage.getItem("user") ? "bodyContainer" : "loginContainer"}>
-        {!isLoginPage && localStorage.getItem("user") && <SideNavbar />}
+        {!isLoginPage && !isCoursePage && localStorage.getItem("user") && <SideNavbar onClick={onNavClick}/>}
         <Routes>
           <Route path="/" element={<SignUp />} />
           <Route path = "/login" element = {<Login/>} />
@@ -33,30 +38,10 @@ function App() {
           <Route path = "/courses/:courseId" element = {<CoursePage />} />
           <Route path = "/classes" element = {<Classes />} />
           <Route path = "/tasks" element = {<Tasks />} />
-          {/* <ProtectedRoutes path = "/dashboard" element = {<Dashboard />} />
-          <ProtectedRoutes path = "/courses" element = {<Courses />} />
-          <ProtectedRoutes path = "/courses/:courseId" element = {<CoursePage />} />
-          <ProtectedRoutes path = "/classes" element = {<Classes />} />
-          <ProtectedRoutes path = "/tasks" element = {<Tasks />} /> */}
         </Routes>
       </div>
     </div>   
   );
 }
-
-
-function ProtectedRoutes({path,element}){
-
-  // var userDetails = localStorage.getItem("user");
-  // userDetails = userDetails && JSON.parse(userDetails);
-  // const userName = userDetails.userName;
-
- return (
-  <>
-    {localStorage.getItem("user") ? <Route path = {path} element = {element} /> : <Navigate to ="/login" /> }
-  </>
-  )
-}
-
 
 export default App;
