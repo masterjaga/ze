@@ -66,6 +66,9 @@ export function Login() {
             </div>
             <Button type="submit" variant="contained">Login</Button>
             <div className="noAccount">Don't have an account? <span onClick={() => navigate("/signup")}>&nbsp;SignUp</span></div>
+            <div className="forgotPasswordLink"> 
+                <span onClick={() => navigate("/forgotpassword")}>&nbsp;Forgotten Password ?</span>
+            </div>
         </form>
         
         <img src="https://th.bing.com/th/id/OIP.9-cTmVTz5jZl0wPdxBrA7gHaEo?pid=ImgDet&rs=1" alt="" />

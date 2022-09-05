@@ -10,6 +10,8 @@ import { CoursePage } from './containers/CoursePage';
 import { Classes } from './containers/Classes';
 import { Tasks } from './containers/Tasks';
 import { TopNavBar } from './containers/TopNavBar';
+import { ForgotPassword } from './containers/ForgotPassword';
+import { ResetPassword } from './containers/ResetPassword';
 
 function App() {
   const location = useLocation();
@@ -38,6 +40,8 @@ function App() {
           <Route path = "/courses/:courseId" element = {<CoursePage />} />
           <Route path = "/classes" element = {<Classes />} />
           <Route path = "/tasks" element = {<Tasks />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />}/>
+          <Route path={`reset-password/:id/:token`} element={<ResetPassword />}/>
         </Routes>
       </div>
     </div>   

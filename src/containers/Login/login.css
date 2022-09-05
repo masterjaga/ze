@@ -56,14 +56,16 @@
  }
  
  .noAccount,
- .accountExists {
+ .accountExists,
+ .forgotPasswordLink {
      font-size: 14px;
      justify-content: center;
      display: flex;
  }
  
  .noAccount span,
- .accountExists span {
+ .accountExists span,
+ .forgotPasswordLink span {
      color: dodgerblue;
      cursor: pointer;
  }
