@@ -2,4 +2,4 @@
 
 // export const API = "https://capstone-student-dashboard.herokuapp.com"
 
-export const API = "https://student-dashboard-backend.onrender.com";
+export const API = "https://zenclass-student-dashboard-backend.onrender.com";
