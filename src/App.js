@@ -1,6 +1,5 @@
-import logo from './logo.svg';
 import './App.css';
-import {Route, Routes, useLocation, Navigate, useNavigate} from "react-router-dom";
+import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
 import { Dashboard } from './containers/Dashboard';
 import { SideNavbar } from './containers/SideNavbar';
 import { Login } from './containers/Login';
@@ -16,11 +15,11 @@ import { ResetPassword } from './containers/ResetPassword';
 function App() {
   const location = useLocation();
   const navigate = useNavigate();
-  const isLoginPage = location.pathname === "/" || location.pathname === "/login" || location.pathname == "/signup";
+  const isLoginPage = location.pathname === "/" || location.pathname === "/login" || location.pathname === "/signup";
   const isCoursePage = location.pathname.includes("/courses/");
 
   const onNavClick = (navItem, type) => {
-    if(type === "signOut") {
+    if (type === "signOut") {
       localStorage.clear();
     }
     navigate(`${navItem}`);
@@ -33,18 +32,18 @@ function App() {
         {!isLoginPage && !isCoursePage && localStorage.getItem("user") && <SideNavbar onClick={onNavClick}/>}
         <Routes>
           <Route path="/" element={<SignUp />} />
-          <Route path = "/login" element = {<Login/>} />
-          <Route path = "/signup" element = {<SignUp/>} />
-          <Route path= "/dashboard" element={<Dashboard />} />
-          <Route path = "/courses" element = {<Courses />} />
-          <Route path = "/courses/:courseId" element = {<CoursePage />} />
-          <Route path = "/classes" element = {<Classes />} />
-          <Route path = "/tasks" element = {<Tasks />} />
-          <Route path="/forgotpassword" element={<ForgotPassword />}/>
-          <Route path={`reset-password/:id/:token`} element={<ResetPassword />}/>
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="/courses/:courseId" element={<CoursePage />} />
+          <Route path="/classes" element={<Classes />} />
+          <Route path="/tasks" element={<Tasks />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
+          <Route path={`reset-password/:id/:token`} element={<ResetPassword />} />
         </Routes>
       </div>
-    </div>   
+    </div>
   );
 }
 
